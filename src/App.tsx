@@ -14,7 +14,7 @@ export default function App() {
 
     const randomIndex = Math.floor(Math.random() * emojis.length);
     setBotSelection(emojis[randomIndex])
-  }, [emojis])
+  }, [])
 
   const result = useMemo(() => {
     if (playerSelection === "❓" || botSelection === "❓") return "Pilih Dulu";
