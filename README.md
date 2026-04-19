@@ -1,73 +1,108 @@
-# React + TypeScript + Vite
+# React Demo — Batu Kertas Gunting
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi permainan Batu Kertas Gunting sederhana yang dibangun menggunakan **React**, **TypeScript**, **Vite**, dan **Tailwind CSS**.
 
-Currently, two official plugins are available:
+## Prasyarat
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Pastikan kamu sudah menginstal:
 
-## React Compiler
+- [Node.js](https://nodejs.org/) versi 18 atau lebih baru
+- npm (sudah termasuk bersama Node.js)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Cara Menjalankan Aplikasi
 
-## Expanding the ESLint configuration
+### 1. Clone repositori
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/Maru-Yasa/study-jam-unesa
+cd study-jam-unesa
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependensi
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Jalankan mode pengembangan
+
+```bash
+npm run dev
+```
+
+Buka browser dan akses `http://localhost:5173`.
+
+## Perintah Lainnya
+
+| Perintah | Keterangan |
+|---|---|
+| `npm run dev` | Menjalankan server pengembangan lokal |
+| `npm run build` | Membuat build produksi |
+| `npm run lint` | Memeriksa kode dengan ESLint |
+
+## Cara Mengikuti Challenge
+
+### 1. Clone repositori
+
+```bash
+git clone https://github.com/Maru-Yasa/study-jam-unesa
+cd study-jam-unesa
+```
+
+### 2. Pindah ke branch challenge
+
+```bash
+git checkout challenge
+```
+
+### 3. Install dependensi
+
+```bash
+npm install
+```
+
+### 4. Jalankan aplikasi
+
+```bash
+npm run dev
+```
+
+---
+
+### Apa yang perlu kamu kerjakan?
+
+Pada branch `challenge`, kode sudah dikosongkan. Tugasmu adalah melengkapinya:
+
+#### `src/components/`
+
+- [ ] Buat **`Box.tsx`**
+  - [ ] Terima props: `emoji: string`, `player: "player" | "bot"`
+  - [ ] Tampilkan ikon `👤` jika `player`, `🤖` jika `bot`
+  - [ ] Tampilkan `emoji` di dalam kotak
+
+- [ ] Buat **`BoxButton.tsx`**
+  - [ ] Terima props: `emoji: string`, `onClick: () => void`
+  - [ ] Render sebagai tombol yang menampilkan `emoji`
+
+#### `src/App.tsx`
+
+- [ ] Gunakan **`useState`** untuk:
+  - [ ] `playerSelection` — pilihan pemain, nilai awal `"❓"`
+  - [ ] `botSelection` — pilihan bot, nilai awal `"❓"`
+
+- [ ] Gunakan **`useCallback`** untuk fungsi `handleBoxButtonClick`:
+  - [ ] Simpan pilihan pemain ke `playerSelection`
+  - [ ] Acak pilihan bot dari `["✌️", "✊", "✋"]` dan simpan ke `botSelection`
+
+- [ ] Gunakan **`useMemo`** untuk menghitung hasil permainan:
+  - [ ] Jika belum memilih → tampilkan `"Pilih Dulu"`
+  - [ ] Jika seri → tampilkan `"🤝 Draw!"`
+  - [ ] Jika menang → tampilkan `"🎉 You Win!"`
+  - [ ] Jika kalah → tampilkan `"😔 You Lose!"`
+
+  Aturan kemenangan:
+  | Pilihan | Mengalahkan |
+  |---|---|
+  | ✊ Batu | ✌️ Gunting |
+  | ✌️ Gunting | ✋ Kertas |
+  | ✋ Kertas | ✊ Batu |
